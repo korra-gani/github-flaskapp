@@ -22,4 +22,4 @@ phases:
   post_build:
     commands:
       - echo "Pushing Docker image"
-      - docker push ganesh1452/flask-codebuild-app:latest
+      - docker push ganesh1452/flask-codebuild-app:GANESH IMAGE
