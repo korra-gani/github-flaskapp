@@ -1,0 +1,21 @@
+version: 0.2
+
+env:
+  parameter-store:
+    DOCKER_HUB_USERNAME: "/codebuild/dockerhub/username"
+    DOCKER_HUB_PASSWORD: "/codebuild/dockerhub/password"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in
+      - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
+
+  build:
+    commands:
+      - docker build -t flask-app .
+      - docker tag flask-app $DOCKER_HUB_USERNAME/flask-app:latest
+
+  post_build:
+    commands:
+      - docker push $DOCKER_HUB_USERNAME/flask-app:latest
