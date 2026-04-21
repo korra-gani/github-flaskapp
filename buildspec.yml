@@ -17,7 +17,7 @@ phases:
     commands:
       - echo "Building Docker image"
       - docker build -t $IMAGE_NAME .
-      - docker tag $IMAGE_NAME ganesh1452/flask-codebuild-app:latest
+      - docker tag $IMAGE_NAME ganesh1452/flask-codebuild-app:GANESH IMAGE
 
   post_build:
     commands:
