@@ -3,11 +3,11 @@
 echo "Pulling Docker image..."
 docker pull flask-codebuild-app:latest
 
-echo "Stopping old containers..."
-docker stop $(docker ps -q) 2>/dev/null || true
-docker rm $(docker ps -aq) 2>/dev/null || true
+echo "Stopping and removing old container..."
+docker stop flask-app 2>/dev/null || true
+docker rm flask-app 2>/dev/null || true
 
 echo "Running container..."
-docker run -d -p 5000:5000 flask-codebuild-app:latest
+docker run -d -p 5000:5000 --name flask-app flask-codebuild-app:latest
 
-echo "App started!"
+echo "App started successfully!"
