@@ -1,3 +1,13 @@
 #!/bin/bash
-docker pull ganesh1452/flask-codebuild-app:latest
-docker run -d -p 5000:5000 ganesh1452/flask-codebuild-app:latest
+
+echo "Pulling Docker image..."
+docker pull flask-codebuild-app:latest
+
+echo "Stopping old containers..."
+docker stop $(docker ps -q) 2>/dev/null || true
+docker rm $(docker ps -aq) 2>/dev/null || true
+
+echo "Running container..."
+docker run -d -p 5000:5000 flask-codebuild-app:latest
+
+echo "App started!"
