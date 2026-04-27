@@ -1,3 +1,7 @@
 #!/bin/bash
-docker stop $(docker ps -q) || true
-docker rm $(docker ps -aq) || true
+
+echo "Stopping container..."
+docker stop flask-app 2>/dev/null || true
+
+echo "Removing container..."
+docker rm flask-app 2>/dev/null || true
